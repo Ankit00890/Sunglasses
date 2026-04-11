@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const slides = [
   {
     id: 1,
     image: '/images/slide1.png',
-    label: 'SUMMER DROP 2024',
+    label: 'SUMMER DROP',
     title: 'DEFIANT\nVISION',
     description: 'Brutalism meets luxury. Our frames are forged for those who see beyond the standard. No rules, just clarity.',
   },
@@ -47,8 +48,8 @@ const HeroCarousel = () => {
           transition={{ duration: 1.5, ease: "easeInOut" }}
           className="absolute inset-0 w-full h-full"
         >
-          {/* Background Image */}
-          <div className="absolute inset-0 w-full h-full">
+          {/* Background Image - Now Clickable */}
+          <Link to="/collections" className="absolute inset-0 w-full h-full cursor-pointer">
             <img
               src={slides[currentSlide].image}
               alt={slides[currentSlide].title}
@@ -57,7 +58,7 @@ const HeroCarousel = () => {
             {/* Dramatic Gradient Overlay for Text Readability */}
             <div className="absolute inset-0 bg-gradient-to-r from-black/70 from-20% via-black/40 via-50% to-transparent"></div>
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/10"></div>
-          </div>
+          </Link>
 
           {/* Slide Content */}
           <div className="absolute z-10 bottom-6 md:bottom-12 left-6 md:left-12 lg:left-24 w-full">
@@ -95,12 +96,12 @@ const HeroCarousel = () => {
                 transition={{ duration: 0.8, delay: 1.1 }}
                 className="flex flex-row md:flex-row gap-3 md:gap-4"
               >
-                <button className="px-4 py-2 md:px-8 md:py-4 bg-yellow-400 hover:bg-yellow-500 text-black text-[10px] md:text-sm font-bold tracking-widest transition-colors w-max">
+                <Link to="/collections" className="px-4 py-2 md:px-8 md:py-4 bg-yellow-400 hover:bg-yellow-500 text-black text-[10px] md:text-sm font-bold tracking-widest transition-colors w-max flex items-center justify-center">
                   SHOP
-                </button>
-                <button className="px-4 py-2 md:px-8 md:py-4 bg-transparent border border-zinc-600 hover:border-zinc-300 text-white text-[10px] md:text-sm font-bold tracking-widest transition-colors w-max">
-                  LOOKBOOK
-                </button>
+                </Link>
+                <a href="#footer" className="px-4 py-2 md:px-8 md:py-4 bg-transparent border border-zinc-600 hover:border-zinc-300 text-white text-[10px] md:text-sm font-bold tracking-widest transition-colors w-max flex items-center justify-center">
+                  CONTACT US
+                </a>
               </motion.div>
             </div>
           </div>

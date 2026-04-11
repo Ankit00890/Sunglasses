@@ -22,9 +22,17 @@ app.use('/api/products', productRoutes);
 // Make the uploads folder publicly accessible
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// Root route
-app.get('/', (req, res) => {
-  res.send('API is running...');
+// Global Error Handler
+app.use((err, req, res, next) => {
+  console.error('SERVER ERROR:', err.stack);
+  res.status(500).json({
+    message: process.env.NODE_ENV === 'production' ? 'Internal Server Error' : err.message
+  });
+});
+
+// 404 Route Catcher
+app.use((req, res) => {
+  res.status(404).json({ message: 'Resource not found' });
 });
 
 // Database connection

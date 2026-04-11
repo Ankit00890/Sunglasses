@@ -1,20 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Navbar from '../components/Navbar';
 import { useCart } from '../context/CartContext';
 import { useNavigate } from 'react-router-dom';
+import { staticProducts } from '../constants/products';
+import { API_ENDPOINTS, getImageUrl } from '../config';
+import { toast } from 'react-hot-toast';
 
-const products = [
-  { id: 1, name: "Noir Classic", price: "2,499", image: "/images/Nior.jpg" },
-  { id: 2, name: "Royal Elite", price: "3,199", image: "/images/Royal.jpg" },
-  { id: 3, name: "Azure Wave", price: "2,899", image: "/images/blue.jpg" },
-  { id: 4, name: "Vintage Tortoise", price: "2,599", image: "/images/brown.jpg" },
-  { id: 5, name: "Skyline Aviators", price: "2,999", image: "/images/skyblue.jpg" },
-  { id: 6, name: "Urban Stealth", price: "2,799", image: "/images/image1.jpg" },
-  { id: 7, name: "Sunset Gold", price: "3,499", image: "/images/image2.jpg" },
-  { id: 8, name: "Midnight Onyx", price: "2,299", image: "/images/image3.jpg" },
-  { id: 9, name: "Royal Signature", price: "4,199", image: "/images/Royal2.jpg" },
-];
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -30,12 +22,39 @@ const cardVariants = {
 };
 
 const Collections = ({ setIsNavOpen }) => {
+  const [products, setProducts] = useState(staticProducts);
+  const [loading, setLoading] = useState(false);
   const { addToCart } = useCart();
   const navigate = useNavigate();
 
+
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch(API_ENDPOINTS.PRODUCTS.BASE);
+        const data = await response.json();
+        const simulated = JSON.parse(localStorage.getItem('simulated_products') || '[]');
+        if (data && data.length > 0) {
+          setProducts([...data, ...simulated]);
+        } else if (simulated.length > 0) {
+          setProducts([...staticProducts, ...simulated]);
+        }
+      } catch (error) {
+        console.error('Error fetching products:', error);
+        const simulated = JSON.parse(localStorage.getItem('simulated_products') || '[]');
+        if (simulated.length > 0) {
+          setProducts([...staticProducts, ...simulated]);
+        }
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
   const handleAddToCart = (product) => {
     addToCart(product);
-    alert(`${product.name} added to cart!`);
+    toast.success(`${product.name} added to cart!`);
   };
 
   const handleBuyNow = (product) => {
@@ -80,7 +99,7 @@ const Collections = ({ setIsNavOpen }) => {
               {/* Image Container */}
               <div className="relative w-full aspect-square bg-[#111] overflow-hidden">
                 <img 
-                  src={product.image} 
+                  src={getImageUrl(product.image)} 
                   alt={product.name} 
                   className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out opacity-80 group-hover:opacity-100"
                 />

@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useCart } from '../context/CartContext';
 import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
+import { toast } from 'react-hot-toast';
 
 const Checkout = ({ setIsNavOpen }) => {
   const { cart, clearCart } = useCart();
@@ -14,6 +15,18 @@ const Checkout = ({ setIsNavOpen }) => {
     address: '',
     city: ''
   });
+
+  // Pre-fill user data if logged in
+  React.useEffect(() => {
+    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+    if (userInfo) {
+      setFormData(prev => ({
+        ...prev,
+        name: userInfo.name || '',
+        phone: userInfo.phone || ''
+      }));
+    }
+  }, []);
 
   const getSubtotal = () => {
     return cart.reduce((total, item) => {
@@ -32,7 +45,7 @@ const Checkout = ({ setIsNavOpen }) => {
 
   const handleConfirmOrder = (e) => {
     e.preventDefault();
-    if (cart.length === 0) return alert('Your cart is empty!');
+    if (cart.length === 0) return toast.error('Your cart is empty!');
     
     // Format cart items for WhatsApp message
     const itemsText = cart.map(item => `${item.quantity}x ${item.name} (₹${item.price})`).join('\n');

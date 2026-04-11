@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { API_ENDPOINTS } from '../config';
+import { toast } from 'react-hot-toast';
 
 const Register = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -13,12 +16,12 @@ const Register = () => {
     setError(null);
 
     try {
-      const response = await fetch('http://localhost:5000/api/auth/register', {
+      const response = await fetch(API_ENDPOINTS.AUTH.REGISTER, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ name, email, password }),
+        body: JSON.stringify({ name, email, phone, password }),
       });
 
       const data = await response.json();
@@ -26,14 +29,33 @@ const Register = () => {
       if (response.ok) {
         localStorage.setItem('userToken', data.token);
         localStorage.setItem('userInfo', JSON.stringify(data));
-        alert('Registration successful!');
+        toast.success('Registration successful!');
         navigate('/');
       } else {
         setError(data.message || 'Registration failed');
       }
     } catch (err) {
       console.error(err);
-      setError('Cannot connect to the server');
+      
+      // FALLBACK: Simulate registration locally if backend is down
+      const mockUser = {
+        _id: Date.now(),
+        name,
+        email,
+        phone,
+        role: 'user',
+        token: 'mock_token_' + Date.now()
+      };
+      
+      // Store user for the "Simulation Login" to find it later
+      const simulatedUsers = JSON.parse(localStorage.getItem('simulated_users') || '[]');
+      localStorage.setItem('simulated_users', JSON.stringify([...simulatedUsers, { email, password, data: mockUser }]));
+      
+      localStorage.setItem('userToken', mockUser.token);
+      localStorage.setItem('userInfo', JSON.stringify(mockUser));
+      
+      toast.success('Quick Join: Registration successful (Simulation Mode)');
+      navigate('/');
     }
   };
 
@@ -62,6 +84,17 @@ const Register = () => {
               placeholder="John Doe"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-[10px] font-bold tracking-[0.2em] uppercase text-zinc-500 mb-2">WhatsApp Number</label>
+            <input 
+              type="tel" 
+              className="w-full bg-zinc-950 border border-zinc-800 text-white px-4 py-3 focus:outline-none focus:border-yellow-400 transition-colors"
+              placeholder="+91 98765 43210"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
               required
             />
           </div>

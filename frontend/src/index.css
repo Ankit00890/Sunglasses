@@ -4,6 +4,10 @@
   --color-primary: #aa3bff;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   @apply bg-zinc-950 text-slate-50;
 }

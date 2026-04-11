@@ -9,11 +9,12 @@ const Navbar = ({ setIsNavOpen }) => {
     <nav className="absolute top-0 left-0 w-full z-50 px-8 py-8 flex items-center justify-between">
       {/* Left Side: Logo */}
       <div className="flex-1 flex items-center">
-        <Link 
-          to="/" 
-          className="text-yellow-400 font-black italic text-2xl md:text-3xl tracking-tighter uppercase transition-colors hover:text-white"
+        <Link
+          to="/"
+          className="text-yellow-400 font-black italic text-2xl md:text-3xl tracking-tighter uppercase transition-colors hover:text-white flex items-center gap-3 md:gap-4"
         >
           Urban Requister
+
         </Link>
       </div>
 
@@ -21,7 +22,7 @@ const Navbar = ({ setIsNavOpen }) => {
       <div className="hidden md:flex flex-1 justify-center items-center space-x-10 text-xs font-bold tracking-[0.2em] uppercase text-zinc-300">
         <Link to="/" className="hover:text-yellow-400 transition-colors">Home</Link>
         <Link to="/collections" className="hover:text-yellow-400 transition-colors">Collections</Link>
-        <Link to="/lookbook" className="hover:text-yellow-400 transition-colors">Lookbook</Link>
+        <a href="#footer" className="hover:text-yellow-400 transition-colors">Contact Us</a>
         <Link to="/our-story" className="hover:text-yellow-400 transition-colors">Our Story</Link>
       </div>
 

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { API_ENDPOINTS } from '../config';
+import { toast } from 'react-hot-toast';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -12,7 +14,7 @@ const Login = () => {
     setError(null);
 
     try {
-      const response = await fetch('http://localhost:5000/api/auth/login', {
+      const response = await fetch(API_ENDPOINTS.AUTH.LOGIN, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -25,14 +27,26 @@ const Login = () => {
       if (response.ok) {
         localStorage.setItem('userToken', data.token);
         localStorage.setItem('userInfo', JSON.stringify(data));
-        alert('Login successful!');
+        toast.success('Login successful!');
         navigate('/');
       } else {
         setError(data.message || 'Login failed');
       }
     } catch (err) {
       console.error(err);
-      setError('Cannot connect to the server');
+      
+      // FALLBACK: Simulate login locally if backend is down
+      const simulatedUsers = JSON.parse(localStorage.getItem('simulated_users') || '[]');
+      const user = simulatedUsers.find(u => u.email === email && u.password === password);
+      
+      if (user) {
+        localStorage.setItem('userToken', user.data.token);
+        localStorage.setItem('userInfo', JSON.stringify(user.data));
+        toast.success('Quick Access: Login successful (Simulation Mode)');
+        navigate('/');
+      } else {
+        setError('Cannot connect to the server');
+      }
     }
   };
 
