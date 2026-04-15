@@ -11,10 +11,9 @@ const Navbar = ({ setIsNavOpen }) => {
       <div className="flex-1 flex items-center">
         <Link
           to="/"
-          className="text-yellow-400 font-black italic text-2xl md:text-3xl tracking-tighter uppercase transition-colors hover:text-white flex items-center gap-3 md:gap-4"
+          className="transition-transform hover:scale-105 flex items-center gap-3 md:gap-4"
         >
-          Urban Requister
-
+          <img src="/images/logo.png" alt="Urban Requister Logo" className="h-16 md:h-24 lg:h-32 w-auto object-contain drop-shadow-xl" />
         </Link>
       </div>
 

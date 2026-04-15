@@ -21,7 +21,7 @@ const slides = [
     id: 3,
     image: '/images/slide3.png',
     label: 'LIMITED EDITION',
-    title: 'URBAN\nARMOR',
+    title: 'URBAN\nREQUISTER',
     description: 'Engineered for the bold. Experience unparalleled design and uncompromising quality.',
   }
 ];

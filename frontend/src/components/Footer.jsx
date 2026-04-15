@@ -7,7 +7,9 @@ const Footer = () => {
 
         {/* Left Side: Brand & Contact Info */}
         <div className="max-w-xl">
-          <h2 className="text-4xl md:text-5xl font-black italic tracking-tighter uppercase mb-6 text-white">Urban Requister<span className="text-yellow-400">.</span></h2>
+          <div className="mb-6">
+            <img src="/images/logo.png" alt="Urban Requister Logo" className="h-16 md:h-28 lg:h-36 w-auto object-contain drop-shadow-xl" />
+          </div>
           <p className="text-zinc-400 text-sm md:text-base leading-relaxed mb-10 max-w-sm">
             Premium luxury eyewear and bespoke styling from the heart of Faridabad. Elevating your aesthetic step by step.
           </p>
