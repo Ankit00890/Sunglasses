@@ -8,7 +8,7 @@ const Footer = () => {
         {/* Left Side: Brand & Contact Info */}
         <div className="max-w-xl">
           <div className="mb-6">
-            <img src="/images/logo.png" alt="Urban Requister Logo" className="h-16 md:h-28 lg:h-36 w-auto object-contain drop-shadow-xl" />
+            <img src="/images/logo.png" alt="Urban Requisite Logo" className="h-16 md:h-24 lg:h-32 w-auto object-contain mix-blend-lighten" />
           </div>
           <p className="text-zinc-400 text-sm md:text-base leading-relaxed mb-10 max-w-sm">
             Premium luxury eyewear and bespoke styling from the heart of Faridabad. Elevating your aesthetic step by step.
@@ -26,11 +26,11 @@ const Footer = () => {
             </a>
 
             {/* Email Contact */}
-            <a href="mailto:example@gmail.com" className="flex items-center gap-4 text-zinc-300 hover:text-white transition-colors group">
+            <a href="mailto:urbanrequisite0@gmail.com" className="flex items-center gap-4 text-zinc-300 hover:text-white transition-colors group">
               <div className="w-10 h-10 bg-[#111] border border-zinc-800 rounded-full flex items-center justify-center group-hover:border-yellow-400 transition-colors">
                 <svg className="w-5 h-5 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
               </div>
-              <span className="font-bold tracking-widest text-sm uppercase">example@gmail.com</span>
+              <span className="font-bold tracking-widest text-[11px] md:text-xs lg:text-sm uppercase break-all">urbanrequisite0@gmail.com</span>
             </a>
 
             {/* Address */}
@@ -64,7 +64,7 @@ const Footer = () => {
 
       {/* Bottom Copyright */}
       <div className="max-w-[1400px] mx-auto mt-20 pt-8 border-t border-zinc-800/50 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] font-bold tracking-[0.2em] text-zinc-600 uppercase">
-        <p>© 2026 Urban Requister. All rights reserved.</p>
+        <p>© 2026 Urban Requisite. All rights reserved.</p>
         <div className="flex gap-6">
           <a href="#" className="hover:text-yellow-400 transition-colors">Privacy Policy</a>
           <a href="#" className="hover:text-yellow-400 transition-colors">Terms of Service</a>

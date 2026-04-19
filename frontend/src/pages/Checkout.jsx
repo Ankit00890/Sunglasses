@@ -6,7 +6,7 @@ import Navbar from '../components/Navbar';
 import { toast } from 'react-hot-toast';
 
 const Checkout = ({ setIsNavOpen }) => {
-  const { cart, clearCart } = useCart();
+  const { cart, clearCart, updateQuantity, removeFromCart } = useCart();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -63,7 +63,7 @@ const Checkout = ({ setIsNavOpen }) => {
   };
 
   return (
-    <div className="relative w-full min-h-screen bg-zinc-950 px-6 md:px-12 lg:px-24 pt-32 pb-24 text-white">
+    <div className="relative w-full min-h-screen bg-zinc-950 px-6 md:px-12 lg:px-24 pt-48 lg:pt-64 pb-24 text-white">
       <Navbar setIsNavOpen={setIsNavOpen} />
       
       <motion.div 
@@ -124,15 +124,27 @@ const Checkout = ({ setIsNavOpen }) => {
             ) : (
               <div className="space-y-4 mb-6 max-h-60 overflow-y-auto pr-2">
                 {cart.map(item => (
-                  <div key={item.id} className="flex justify-between items-center bg-[#1a1a1a] p-3 rounded-lg border border-zinc-800">
-                    <div className="flex items-center gap-3">
-                      <img src={item.image} alt={item.name} className="w-12 h-12 object-cover rounded-md" />
-                      <div>
+                  <div key={item.id} className="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-[#1a1a1a] p-3 rounded-lg border border-zinc-800 gap-3">
+                    <div className="flex items-center gap-3 w-full sm:w-auto">
+                      <img src={item.image} alt={item.name} className="w-12 h-12 object-cover rounded-md bg-[#111]" />
+                      <div className="flex-1">
                         <p className="text-sm font-bold">{item.name}</p>
-                        <p className="text-xs text-zinc-500 font-bold">Qty: {item.quantity}</p>
+                        <p className="text-sm font-bold text-yellow-400">₹{item.price}</p>
                       </div>
+                      <button onClick={() => removeFromCart(item.id)} className="sm:hidden text-zinc-600 hover:text-red-500 p-1">
+                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+                      </button>
                     </div>
-                    <p className="text-sm font-bold text-yellow-400">₹{item.price}</p>
+                    <div className="flex justify-between w-full sm:w-auto items-center">
+                      <div className="flex items-center gap-2 bg-black rounded border border-zinc-800 px-1">
+                        <button onClick={() => updateQuantity(item.id, -1)} className="px-2 py-0.5 text-zinc-400 hover:text-white">-</button>
+                        <span className="text-white text-xs font-bold min-w-[20px] text-center">{item.quantity}</span>
+                        <button onClick={() => updateQuantity(item.id, 1)} className="px-2 py-0.5 text-zinc-400 hover:text-white">+</button>
+                      </div>
+                      <button onClick={() => removeFromCart(item.id)} className="hidden sm:block text-zinc-600 hover:text-red-500 ml-4 transition-colors">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+                      </button>
+                    </div>
                   </div>
                 ))}
               </div>

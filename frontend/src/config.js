@@ -1,5 +1,5 @@
 /**
- * Central API Configuration for Urban Requister.
+ * Central API Configuration for Urban Requisite.
  * This file handles the transition between local development and production.
  */
 

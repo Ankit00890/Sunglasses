@@ -33,7 +33,7 @@ const OurStory = ({ setIsNavOpen }) => {
         >
           <img
             src="/images/our_story_hero.png"
-            alt="Urban Requister Hero"
+            alt="Urban Requisite Hero"
             className="w-full h-full object-cover grayscale brightness-50"
           />
         </motion.div>
@@ -46,7 +46,7 @@ const OurStory = ({ setIsNavOpen }) => {
             className="text-6xl md:text-9xl font-black italic tracking-tighter uppercase leading-none"
           >
             Urban <br />
-            <span className="text-yellow-400">Requister</span>
+            <span className="text-yellow-400">Requisite</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0 }}
@@ -85,7 +85,7 @@ const OurStory = ({ setIsNavOpen }) => {
           </motion.h2>
           <motion.div variants={itemVariants} className="h-[2px] w-24 bg-yellow-400"></motion.div>
           <motion.p variants={itemVariants} className="text-lg md:text-xl text-zinc-400 leading-relaxed font-medium">
-            Founded in the heart of the concrete jungle, Urban Requister was born from a simple observation: eyewear had become a mask, not a statement.
+            Founded in the heart of the concrete jungle, Urban Requisite was born from a simple observation: eyewear had become a mask, not a statement.
           </motion.p>
           <motion.p variants={itemVariants} className="text-lg text-zinc-500 leading-relaxed">
             We didn't set out to follow the light. We set out to master it. Our frames are designed for the navigators of the urban landscape—those who request more than just utility from their aesthetic.
@@ -117,7 +117,7 @@ const OurStory = ({ setIsNavOpen }) => {
             whileInView={{ opacity: 1 }}
             className="text-yellow-400 font-bold uppercase tracking-[0.5em] text-xs"
           >
-            The Requister Ethos
+            The Requisite Ethos
           </motion.span>
           <motion.h3
             initial={{ opacity: 0, y: 20 }}
@@ -152,7 +152,7 @@ const OurStory = ({ setIsNavOpen }) => {
           >
             <h4 className="text-2xl font-black italic uppercase text-yellow-400">Optics</h4>
             <p className="text-zinc-500 leading-relaxed">
-               Polarized clarity that cuts through the metropolis haze. Every lens is laser-etched with the Requister seal.
+               Polarized clarity that cuts through the metropolis haze. Every lens is laser-etched with the Requisite seal.
             </p>
           </motion.div>
 

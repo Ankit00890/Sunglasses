@@ -24,7 +24,7 @@ const cardVariants = {
 const Collections = ({ setIsNavOpen }) => {
   const [products, setProducts] = useState(staticProducts);
   const [loading, setLoading] = useState(false);
-  const { addToCart } = useCart();
+  const { addToCart, clearCart } = useCart();
   const navigate = useNavigate();
 
 
@@ -55,15 +55,17 @@ const Collections = ({ setIsNavOpen }) => {
   const handleAddToCart = (product) => {
     addToCart(product);
     toast.success(`${product.name} added to cart!`);
+    window.dispatchEvent(new Event('open-cart'));
   };
 
   const handleBuyNow = (product) => {
+    clearCart();
     addToCart(product);
     navigate('/checkout');
   };
 
   return (
-    <div className="relative w-full min-h-screen bg-zinc-950 px-6 md:px-12 lg:px-24 pt-32 pb-24">
+    <div className="relative w-full min-h-screen bg-zinc-950 px-6 md:px-12 lg:px-24 pt-48 lg:pt-64 pb-24">
       <Navbar setIsNavOpen={setIsNavOpen} />
       
       <motion.div 

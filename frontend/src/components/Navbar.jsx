@@ -13,7 +13,7 @@ const Navbar = ({ setIsNavOpen }) => {
           to="/"
           className="transition-transform hover:scale-105 flex items-center gap-3 md:gap-4"
         >
-          <img src="/images/logo.png" alt="Urban Requister Logo" className="h-16 md:h-24 lg:h-32 w-auto object-contain drop-shadow-xl" />
+          <img src="/images/logo.png" alt="Urban Requisite Logo" className="h-16 md:h-24 lg:h-32 w-auto object-contain mix-blend-lighten" />
         </Link>
       </div>
 
