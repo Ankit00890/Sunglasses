@@ -22,8 +22,8 @@ const UserMenu = () => {
 
   return (
     <>
-      <button 
-        onClick={() => setIsOpen(true)} 
+      <button
+        onClick={() => setIsOpen(true)}
         className="block text-white hover:text-yellow-400 transition-colors relative"
         aria-label="Account"
       >
@@ -37,11 +37,11 @@ const UserMenu = () => {
         {isOpen && (
           <>
             {/* Invisible backdrop to close dropdown when clicking outside */}
-            <div 
-              className="fixed inset-0 z-40 bg-transparent" 
+            <div
+              className="fixed inset-0 z-40 bg-transparent"
               onClick={() => setIsOpen(false)}
             />
-            
+
             <motion.div
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -53,7 +53,7 @@ const UserMenu = () => {
                   <>
                     <h3 className="text-lg font-black italic uppercase tracking-tighter text-white mb-1 truncate">{userInfo.name}</h3>
                     <p className="text-[9px] uppercase tracking-[0.2em] text-yellow-400 font-black mb-4">MEMBER SINCE {new Date().getFullYear()}</p>
-                    <button 
+                    <button
                       onClick={handleLogout}
                       className="w-full bg-zinc-800 hover:bg-zinc-700 text-white py-2.5 text-[10px] font-black tracking-widest uppercase transition-colors text-center inline-block"
                     >
@@ -78,22 +78,22 @@ const UserMenu = () => {
 
               <div className="flex flex-col p-4 gap-4 bg-zinc-950/50">
                 <button className="text-left text-xs font-bold uppercase tracking-wider text-zinc-400 hover:text-white transition-colors flex items-center justify-between group">
-                  My Orders 
+                  My Orders
                   <span className="text-zinc-700 group-hover:text-yellow-400 transition-colors">→</span>
                 </button>
                 <button className="text-left text-xs font-bold uppercase tracking-wider text-zinc-400 hover:text-white transition-colors flex items-center justify-between group">
-                  Saved Items 
+                  Saved Items
                   <span className="text-zinc-700 group-hover:text-yellow-400 transition-colors">→</span>
                 </button>
-                
+
                 {isAdmin ? (
                   <Link to="/admin/dashboard" onClick={() => setIsOpen(false)} className="text-left text-xs font-bold uppercase tracking-wider text-yellow-400 hover:text-yellow-200 transition-colors flex items-center justify-between group mt-2 pt-2 border-t border-zinc-800/50">
-                    Admin Dashboard 
+                    Admin Dashboard
                     <span className="text-zinc-700 group-hover:text-yellow-400 transition-colors">→</span>
                   </Link>
                 ) : (
                   <Link to="/admin" onClick={() => setIsOpen(false)} className="text-left text-xs font-bold uppercase tracking-wider text-yellow-600 hover:text-yellow-400 transition-colors flex items-center justify-between group mt-2 pt-2 border-t border-zinc-800/50">
-                    Admin Access 
+                    Admin Access
                     <span className="text-zinc-700 group-hover:text-yellow-400 transition-colors">→</span>
                   </Link>
                 )}

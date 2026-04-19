@@ -22,9 +22,15 @@ const AdminDashboard = () => {
         const token = localStorage.getItem('adminToken'); // This is the hardcoded session token
         
         if (!token && (!userInfo || userInfo.role !== 'admin')) {
-            toast.error('UNAUTHORIZED ACCESS: This vault is protected.');
+            if (!sessionStorage.getItem('adminSignedOut')) {
+                toast.error('UNAUTHORIZED ACCESS: This vault is protected.');
+            }
             navigate('/admin');
+            return;
         }
+        
+        // Clear flag upon successful entry
+        sessionStorage.removeItem('adminSignedOut');
         fetchAdminProducts();
     }, [navigate]);
 
@@ -164,7 +170,11 @@ const AdminDashboard = () => {
                         Admin <span className="text-yellow-400">Vault</span>
                     </h1>
                     <button 
-                        onClick={() => { localStorage.removeItem('adminToken'); navigate('/admin'); }}
+                        onClick={() => { 
+                            sessionStorage.setItem('adminSignedOut', 'true');
+                            localStorage.removeItem('adminToken'); 
+                            navigate('/'); 
+                        }}
                         className="text-[10px] font-bold tracking-widest uppercase text-zinc-500 hover:text-white transition-colors"
                     >
                         Sign Out
