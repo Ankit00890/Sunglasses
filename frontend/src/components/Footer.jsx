@@ -8,7 +8,7 @@ const Footer = () => {
         {/* Left Side: Brand & Contact Info */}
         <div className="max-w-xl">
           <div className="mb-6">
-            <img src="/images/logo.png" alt="Urban Requisite Logo" className="h-16 md:h-24 lg:h-32 w-auto object-contain mix-blend-lighten" />
+            <img src="/images/logo.png" alt="Urban Requisite Logo" className="h-16 md:h-24 lg:h-32 w-auto object-contain" />
           </div>
           <p className="text-zinc-400 text-sm md:text-base leading-relaxed mb-10 max-w-sm">
             Premium luxury eyewear and bespoke styling from the heart of Faridabad. Elevating your aesthetic step by step.
