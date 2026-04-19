@@ -13,12 +13,12 @@ const Navbar = ({ setIsNavOpen }) => {
           to="/"
           className="transition-transform hover:scale-105 flex items-center gap-3 md:gap-4"
         >
-          <img src="/images/logo.png" alt="Urban Requisite Logo" className="h-16 md:h-24 lg:h-32 w-auto object-contain" />
+          <img src="/images/logo.png" alt="Urban Requisite Logo" className="h-16 md:h-20 lg:h-24 w-auto object-contain" />
         </Link>
       </div>
 
       {/* Center: Inline Navigation (Desktop Only) */}
-      <div className="hidden md:flex flex-1 justify-center items-center space-x-10 text-xs font-bold tracking-[0.2em] uppercase text-zinc-300">
+      <div className="hidden md:flex flex-1 justify-center items-center gap-6 lg:gap-10 text-xs font-bold tracking-[0.2em] uppercase text-zinc-300 whitespace-nowrap">
         <Link to="/" className="hover:text-yellow-400 transition-colors">Home</Link>
         <Link to="/collections" className="hover:text-yellow-400 transition-colors">Collections</Link>
         <a href="#footer" className="hover:text-yellow-400 transition-colors">Contact Us</a>
